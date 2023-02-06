@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+  <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+  <link rel="stylesheet" type="text/css"  href="style.css" />
+  <title>Pretraga</title>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <div class="panel">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-sm-9 col-xs-12 text-right">
+              <div class="btn_group">
+                <form th:action="@{/dogadjaji/admin/search}" method="get">
+                  <input type="text" name="keyword" th:value="${keyword}"
+                         placeholder="Pretraži događaje po nazivu ili datumu" size="50" >
+                  <button type="submit" class="btn btn-info" >Pretraži</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Naziv dogadjaja</th>
+              <th>Datum  </th>
+              <th>Opis</th>
+              <th>Slika</th>
+              <th>       </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  th:each="dogadjaj : ${listaDogadjaja}">
+              <td th:text="${dogadjaj.ime}">Dogadjaj Naziv</td>
+              <td th:text="${dogadjaj.datum}  ">Datum</td>
+              <td th:text="${dogadjaj.opis}">Opis</td>
+              <td><img th:src="${dogadjaj.url}" width="80" height="80"/></td>
+              <td>
+                <a th:href="@{/dogadjaji/admin/edit/{id}(id=${dogadjaj.id})}">Uredi</a>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+  <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+    <title>Komentari</title>
+</head>
+<body>
+<div align="center">
+  <div class="col-sm-4">
+      <div alight="left">
+        <tr>
+          <td><img th:src="${dogadjaj.url}" width="300" height="300"/></td>
+        </tr>
+        <tr>
+          <td>
+            <h1 th:text="${dogadjaj.ime}" th:value="${dogadjaj.ime}" />
+          </td>
+        </tr>
+      </div>
+      <div alight="left">
+        <tr>
+          <td><h2 th:text="${dogadjaj.datum}" th:value="${dogadjaj.datum}" /></td>
+        </tr>
+      </div>
+      <div alight="left">
+        <tr>
+          <td><h2 th:text="${dogadjaj.opis}" th:value="${dogadjaj.opis}" /></td>
+        </tr>
+      </div>
+      <div alight="left">
+        <tr>
+          <h2 th:value="${dogadjaj.lokacije.id}"
+          th:text="${dogadjaj.lokacije.ime}"/>
+        </tr>
+      </div>
+      </table>
+      <table class="table">
+          <thead>
+          <tr>
+              <th>Korisnik</th>
+              <th>Komentar</th>
+              <th>Datum</th>
+              <th>              </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr  th:each="komentar : ${listaKomentara}">
+              <td th:text="${komentar.user.email}"></td>
+              <td th:text="${komentar.komentarText}"></td>
+              <td th:text="${komentar.datum}"></td>
+          </tr>
+          </tbody>
+      </table>
+      <form action="#" th:action="@{/dogadjaji/user/komentari/save/{id}(id=${dogadjaj.id})}"
+            object="${komentar}" name="komentar"
+            method="post">
+          <input type="text" field="*{komentarText}" name="komentarText" class="form-control" placeholder="Upišite komentar" />
+          <tr>
+              <td colspan="2"><button type="submit" class="btn btn-danger">Pošalji</button> </td>
+          </tr>
+      </form>
+    </form>
+  </div>
+</div>
+</body>

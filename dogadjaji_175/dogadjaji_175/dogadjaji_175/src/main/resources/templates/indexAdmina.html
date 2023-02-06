@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+    <link rel="stylesheet" type="text/css"  href="style.css" />
+    <title>Događaji</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col col-sm-3 col-xs-12">
+                            <br>
+                            <h4><a  th:href="@{'/dogadjaji/admin/new'}">Dodaj događaj</a></h4>
+                        </div>
+                        <div class="col-sm-9 col-xs-12 text-right">
+                            <br>
+                            <div class="btn_group">
+                                <form th:action="@{/dogadjaji/admin/search}" method="get">
+                                    <input type="text" name="keyword" th:value="${keyword}"
+                                           placeholder="Pretraži događaje po nazivu ili datumu" size="50" >
+                                    <button type="submit" class="btn btn-info" >Pretraži</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col col-sm-3 col-xs-12">
+                            <table>
+                                <tr>
+                                    <td><a  th:href="@{'/kategorije/admin'}">Kategorije</a></td>
+                                    <td>  |  </td>
+                                    <td><a  th:href="@{'/lokacije/admin'}">Lokacije</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Naziv događaja</th>
+                            <th>Datum događaja</th>
+                            <th>Kategorija događaja</th>
+                            <th>Lokacija događaja</th>
+                            <th>Opis događaja</th>
+                            <th>Slika</th>
+                            <th>           </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr  th:each="dogadjaj : ${listaDogadjaja}">
+                            <td th:text="${dogadjaj.ime}">Dogadjaj Naziv</td>
+                            <td th:text="${dogadjaj.datum}  ">Datum</td>
+                            <td th:text="${dogadjaj.kategorije.ime}">Naziv kategorije</td>
+                            <td th:text="${dogadjaj.lokacije.ime}">Lokacija dogadjaja</td>
+                            <td th:text="${dogadjaj.opis}">Opis</td>
+                            <td><img th:src="${dogadjaj.url}" width="50" height="50"/></td>
+                            <td><a th:href="@{/dogadjaji/admin/edit/{id}(id=${dogadjaj.id})}">Uredi</a></td>
+                            <td> <a th:href="@{/dogadjaji/admin/komentari/{id}(id=${dogadjaj.id})}">Pogledaj komentare</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Uredi kategoriju</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+</head>
+<body>
+<div align="center">
+    <h1>Uredi kategoriju</h1>
+    <br />
+    <div class="col-sm-4">
+        <form action="#" th:action="@{/kategorije/admin/update/{id}(id=${kategorije.id})}" object="${kategorije}" name="kategorije"
+              method="put">
+
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >Naziv kategorije</label>
+                    <td>
+                        <input type="hidden" field="*{id}" name="id" />
+                        <input type="text" field="*{ime}" name="ime" class="form-control" th:value="${kategorije.ime}" />
+                    </td>
+                </tr>
+            </div>
+
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >Ikona</label>
+                    <td><input type="text" field="*{ikona}" name="ikona" class="form-control" th:value="${kategorije.ikona}" /></td>
+
+                </tr>
+            </div>
+
+            <br>
+            <tr>
+                <td colspan="2"><button type="submit" class="btn btn-info">Uredi</button> </td>
+            </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>

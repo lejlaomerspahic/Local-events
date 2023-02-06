@@ -1,0 +1,89 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Dodaj novi događaj</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+</head>
+<body>
+<div align="center">
+    <h1>Dodaj novi događaj</h1>
+    <br />
+    <div class="col-sm-4">
+        <form action="#" th:action="@{/dogadjaji/admin/save}" object="${dogadjaj}" name="dogadjaj" method="post">
+
+
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >Naziv događaja</label>
+                    <td>
+                        <input type="hidden" field="*{id}" name="id" />
+                        <input type="text" field="*{ime}" name="ime" class="form-control" placeholder="Naziv događaja" />
+                    </td>
+                </tr>
+            </div>
+
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label">Datum</label>
+                    <td><input type="date" field="*{{datum}}" name="datum" class="form-control" placeholder="Datum" /></td>
+
+                </tr>
+            </div>
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >Opis</label>
+                    <td><input type="text" field="*{opis}" name="opis" class="form-control" placeholder="Opis" /></td>
+                </tr>
+            </div>
+
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >Kategorije</label>
+                    <br>
+                    <select style="width:250px; height:30px;"
+                            name="kategorijaID">
+                        <option>SELECT</option>
+                        <option th:each="kategorije : ${listaKategorija}"
+                        th:value="${kategorije.id}"
+                        th:text="${kategorije.ime}">
+                        </option>
+                    </select>
+                </tr>
+            </div>
+            <br>
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >Lokacije</label>
+                    <br>
+                    <select
+                            style="width:250px; height:30px;"
+                            name="lokacijaID">
+                        <option>SELECT</option>
+                        <option th:each="lokacije : ${listaLokacija}"
+                                th:value="${lokacije.id}"
+                                th:text="${lokacije.ime}">
+                        </option>
+                    </select>
+                </tr>
+            </div>
+            <br>
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >Slika</label>
+                    <td><input type="text" field="*{url}" name="url" class="form-control" placeholder="Slika" /></td>
+                </tr>
+            </div>
+            <br><br>
+            <tr>
+                <td colspan="2"><button type="submit" class="btn btn-info">Spremi</button> </td>
+            </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

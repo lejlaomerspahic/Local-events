@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+  <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+  <link rel="stylesheet" type="text/css"  href="style.css" />
+  <title>Pretraga</title>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <div class="panel">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-sm-9 col-xs-12 text-right">
+              <div class="btn_group">
+                <form th:action="@{/kategorije/user/search}" method="get">
+                  <input type="text" name="keyword" th:value="${keyword}"  placeholder="Pretraži kategorije po nazivu" size="50" >
+                  <button type="submit" class="btn btn-info" >Pretraži</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Naziv kategorije</th>
+              <th>Ikona</th>
+              <th>            </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  th:each="kategorije : ${listaKategorija}">
+              <td th:text="${kategorije.ime}">Naziv kategorije</td>
+              <td><img th:src="${kategorije.ikona}" width="50" height="50"/></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+

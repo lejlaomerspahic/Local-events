@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <meta charset="UTF-8">
+	    <title>Prijava</title>
+		<link th:rel="stylesheet" th:href = "@{/css/bootstrap.min.css}">
+	</head>
+	<body>
+		</nav>
+		<br />
+		<br />
+		<br />
+		<div class="container">
+		    <div class="row">
+		        <div class="col-md-6 offset-md-3">
+		            <div th:if="${param.greska}">
+		                <div class="alert alert-danger">Pogrešan email, šifra ili ste suspendovani.</div>
+		            </div>
+		            <div th:if="${param.odjava}">
+		                <div class="alert alert-success">Odjavljeni ste. Prijavite se ponovo</div>
+		            </div>
+		            <div class="card">
+		                <div class="card-header">
+		                    <h3 class="text-center">Prijava</h3>
+		                </div>
+		                <div class="card-body">
+		                    <form
+		                            method="post"
+		                            th:action="@{/prijava}"
+		                            class="form-horizontal"
+		                            role="form"
+		                    >
+		                        <div class="mb-3">
+		                            <label for="username" class="control-label">Email</label>
+		                            <input type="text"
+		                                   id="username"
+		                                   name="username"
+		                                   class="form-control"
+		                                   placeholder="Email"
+		                            />
+		                        </div>
+
+		                        <div class="mb-3">
+		                            <label for="password" class="control-label">Šifra</label>
+		                            <input type="password"
+		                                   id="password"
+		                                   name="password"
+		                                   class="form-control"
+		                                   placeholder="Šifra"
+		                            />
+		                        </div>
+
+		                        <div class="mb-3">
+		                            <button type="submit" class="btn btn-primary">Prijava</button>
+		                            <span> Nisi registrovan?
+		                            <a th:href="@{/registracija}"> Odmah to uradi</a>
+		                        </span>
+		                        </div>
+		                    </form>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	</body>
+</html>
